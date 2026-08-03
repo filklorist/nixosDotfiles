@@ -8,24 +8,194 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/cfa8c39c-2828-431c-b3d8-9e39c201d98f";
+    { device = "/dev/disk/by-uuid/96d32c22-fb0b-4858-baf8-f5d3a8d91e55";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DCB3-E538";
+    { device = "/dev/disk/by-uuid/9A21-15BD";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices = [ ];
+
+  swapDevices = [ 
+    {
+      device = "/var/lib/swapfile1";
+      size = 18*1024;
+    } 
+    {
+      device = "/var/lib/swapfile2";
+      size = 8*1024;
+    }
+    {
+      device = "/var/lib/swapfile3";
+      size = 6*1024;
+    }
+  ];
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp170s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.sane.enable = true;
+
+  hardware.fancontrol = {
+    enable = false;
+    config = ''
+           # This file was created by Fancontrol-GUI
+           INTERVAL=10
+           DEVPATH=hwmon4=devices/platform/framework_laptop hwmon6=devices/platform/coretemp.0
+           DEVNAME=hwmon4=framework_laptop hwmon6=coretemp
+           FCTEMPS=hwmon4/pwm1=hwmon4/fan1_input
+           MINTEMP=hwmon4/pwm1=49
+           MAXTEMP=hwmon4/pwm1=66
+           MINSTART=hwmon4/pwm1=122
+           MINSTOP=hwmon4/pwm1=0
+           MINPWM=hwmon4/pwm1=0
+           MAXPWM=hwmon4/pwm1=255
+           AVERAGE=hwmon4/pwm1=1
+    '';
+  };
+
+  hardware.fw-fanctrl = {
+    enable = true;
+    config = {                             # This option is only needed if you want to add additional strategies
+      defaultStrategy = "school";
+      strategyOnDischarging = "school";   # Must not be set
+      strategies = {
+        "school" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 40;
+          speedCurve = [
+            { temp = 0; speed = 0; }
+            { temp = 64; speed = 0; }
+            { temp = 65; speed = 10; }
+            { temp = 75; speed = 15; }
+            { temp = 80; speed = 25; }
+            { temp = 85; speed = 35; }
+          ];
+        };
+        "lazy" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 15; }
+            { temp = 50; speed = 15; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test1" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 10; }
+            { temp = 50; speed = 10; }
+            { temp = 70; speed = 10; }
+            { temp = 75; speed = 20; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test2" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 20; }
+            { temp = 50; speed = 20; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test3" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 30; }
+            { temp = 50; speed = 30; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test4" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 40; }
+            { temp = 50; speed = 40; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test5" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 50; }
+            { temp = 50; speed = 50; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test6" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 60; }
+            { temp = 50; speed = 60; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test7" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 70; }
+            { temp = 50; speed = 70; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+        "Test8" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 100; }
+            { temp = 50; speed = 100; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+
+      };
+    };
+    disableBatteryTempCheck = false;
+  };
 }

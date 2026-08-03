@@ -8,15 +8,14 @@
   hardware.uinput.enable = true;
 
   # Set up udev rules for uinput
-  services.udev.extraRules = ''
-    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-  '';
+  # services.udev.extraRules = ''
+  #   KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+  # '';
 
   # Ensure the uinput group exists
   users.groups.uinput = { };
 
-  # Add the Kanata service user to necessary groups
-  systemd.services.kanata-internalKeyboard.serviceConfig = {
+  systemd.services.kanata-test1.serviceConfig = {
     SupplementaryGroups = [
       "input"
       "uinput"
@@ -25,35 +24,34 @@
 
   services.kanata = {
     enable = true;
+
     keyboards.test1 = {
       devices = [
         "/dev/input/event0"
         "/dev/input/event1"
-          # "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-          # "/dev/input/by-path/pci-0000:00:14.0-usb-0:1:1.0-event-kbd"
       ];
       config = ''
       (defsrc
-        /     '     down ]
-        ralt        rght del
+        9    =
+        rctl o
       )
 
       (deflayer default
-        _     _     _    _
-        @ralt       _    _
+        _     _
+        @rctl _
       )
 
       (deflayer press
-        spc   enter up   \
-        _           left bspc
+        0    -
+        _    p
       )
 
       (defalias
-        ralt (tap-hold 0 10 ralt (layer-toggle press))
+        rctl (tap-hold 0 10 rctl (layer-toggle press))
       )
       '';
       extraDefCfg = "process-unmapped-keys yes";
     };
-  };
 
+  };
 }

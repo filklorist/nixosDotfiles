@@ -25,6 +25,7 @@
             # Variables
             "$mainMod" = "SUPER";
             "$terminal" = "kitty";
+            "$browser" = "librewolf";
             "$fileManagerCLI" = "kitty -e ranger";
             "$fileManagerGUI" = "dolphin";
             "$menu" = "wofi --show drun";
@@ -34,30 +35,36 @@
             ];
 
             env = [
-                "XCURSOR_SIZE,24"
+                "XCURSOR_SIZE,32"
+                "HYPRCURSOR_THEME,rose-pine-hyprcursor"
+                "HYPRCURSOR_SIZE,32"
                 "QT_QPA_PLATFORM,wayland"
                 "QT_QPA_PLATFORMTHEME,qt5ct"
             ];
 
-            windowrulev2 = [
-                "float, title: ^Picture-in-Picture$"
-                "pin, title: ^Picture-in-Picture$"
-                "opacity 0.85, class:.*"
-                "opacity 1.0, title:(.*)(- YouTube — Mozilla Firefox)"
-                "opacity 1.0, title:(.*)(- HuraWatch — Mozilla Firefox)"
-                "opacity 0.8, class:kitty"
-                "opacity 1.0, class:vlc"
-                "opacity 1.0, fullscreen:1"
-                "opacity 1.0, title: ^Picture-in-Picture$"
-                "opacity 0.6, tag:alpha_6"
-                "opacity 0.0, tag:alpha_0"
-                "opacity 1.0, tag:alpha_1"
-                "suppressevent maximize, class:.*" # You'll probably like this.
+            windowrule = [
+                "float, match:initialTitle ^Picture-in-Picture$"
+                "pin, match:initialTitle ^Picture-in-Picture$"
+                "opacity 0.85, match:class .*"
+                "opacity 1.0, match:class librewolf"
+                "opacity 1.0, match:class vlc"
+                "opacity 1.0, match:fullscreen 1"
+                "opacity 1.0, match:initialTitle ^Picture-in-Picture$"
+                "opacity 0.6 override, match:tag alpha_6"
+                "opacity 0.8 override, match:tag alpha_8"
+                "opacity 0.0 override, match:tag alpha_0"
+                "opacity 1.0 override, match:tag alpha_1"
+                "suppressevent maximize, match:class .*"
             ];
 
-            "exec-once" = "emacs --daemon & firefox & hyprpaper & hyprctl setcursor theme_MarsCursor 64 & dunst & wl-paste --watch cliphist store & for i in {1..5}; do wayneko --layer overlay --follow-pointer true & sleep 1; done";
-
+            # & for i in {1..5}; do wayneko --layer overlay --follow-pointer true & sleep 1; done
+            "exec-once" = "emacs --daemon & ~/.dotfiles/startup.sh & hyprpaper & dunst & wl-paste --watch cliphist store";
+            # add "& hyprctl setcursor theme_MarsCursor 64 " for marscursor
             # Some more settings
+            cursor = {
+              enable_hyprcursor = true;
+              sync_gsettings_theme = true;
+            };
             input = {
                 kb_layout = "us";
                 # kb_variant = "symbolic";
@@ -153,6 +160,7 @@
 
             misc = {
                 # See https://wiki.hyprland.org/Configuring/Variables/ for more
+                disable_splash_rendering = true;
                 force_default_wallpaper = "-1"; # Set to 0 to disable the anime mascot wallpapers
             };
 
@@ -170,6 +178,7 @@
             bind = [
                 # base default stuff
                 "$mainMod, Q, exec, $terminal"
+                "$mainMod ALT, Q, exec, $terminal -e zsh"
                 "$mainMod, C, killactive, "
                 "$mainMod SHIFT, M, exit, "
                 "$mainMod, E, exec, $fileManagerCLI"
@@ -191,10 +200,11 @@
                 "$mainMod SHIFTH, F, fullscreen, 0"
 
                 # Browser stuff 
-                "$mainMod SHIFT,Q,exec,firefox"
-                "$mainMod SHIFT,A,exec,firefox -new-tab https://twitter.com/garflasange"
+                "$mainMod SHIFT,Q,exec,$browser"
+                "$mainMod SHIFT,A,exec,$browser -P \"default\""
+                "$mainMod SHIFT,G,exec,$browser -new-window https://twitter.com/garflasange"
 
-                "ALT SHIFT, Q, exec, firefox --private-window"
+                "ALT SHIFT, Q, exec, librewolf --private-window"
                 "$mainMod, G, exec, google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --incognito"
 
                 # Layout Change
@@ -214,6 +224,7 @@
                 "ALT SHIFT,S,exec,steam"
                 "ALT SHIFT,D,exec,vesktop"
                 # "$mainMod SHIFT,N,exec,nautilus"
+                "ALT SHIFT,N,exec,kitty -e ncmpcpp"
 
                 # Moving around
                 "$mainMod, left, movefocus, l"
@@ -264,18 +275,22 @@
                 "$mainMod, mouse_down, workspace, e+1"
                 "$mainMod, mouse_up, workspace, e-1"
 
+                # testing
+                "$mainMod, T, exec, ~/.dotfiles/startup.sh"
+
                 # tagging
                 "$mainMod Ctrl, 1, tagwindow, alpha_1"
                 "$mainMod Ctrl, 6, tagwindow, alpha_6"
                 "$mainMod Ctrl, 0, tagwindow, alpha_0"
+                "$mainMod Ctrl, 2, tagwindow, alpha_8"
 
                 # restart hyprpaper & waybar & emacs client
                 "$mainMod SHIFT, B, exec, killall hyprpaper && hyprpaper"
                 "$mainMod, B, exec, killall .waybar-wrapped && waybar"
                 "$ALT, B, exec, emacsclient -e '(save-buffers-kill-emacs)' && emacs --daemon"
-                
+
                 # Cat factory
-                "$mainMod SHIFT, N, exec, wayneko --layer overlay --follow-pointer true"
+                # "$mainMod SHIFT, N, exec, wayneko --layer overlay --follow-pointer true"
 
                 # bluetooth
                 "$ALT SHIFT, Z, exec, bluetoothctl power on"
@@ -297,6 +312,7 @@
                 # media
                 ", XF86AudioPrev, exec, playerctl previous"
                 ", XF86AudioPlay, exec, playerctl play-pause"
+                ", XF86AudioPause,exec, playerctl play-pause"
                 ", XF86AudioNext, exec, playerctl next"
             ];
             # mouse keybinds

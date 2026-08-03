@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "filk";
-  home.homeDirectory = "/home/filk";
+  home.username = "jonah";
+  home.homeDirectory = "/home/jonah";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,10 +23,11 @@
   imports =
     [
       ./bash.nix
-      # ./hyprland.nix
-      # ./waybar.nix
+      ./hyprland.nix
+      ./waybar.nix
       ./stylix-h.nix
       ./ranger.nix
+      ./zsh.nix
     ];
 
   # Minimize/Maximize Windows
@@ -36,73 +37,117 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-
+    bc
 
     #the good stuff
     vscodium-fhs
+    vlc
     jdk
     cmake
     pkg-config
-
-    kdePackages.bluedevil
     # clamav
+    # discord
     # vesktop
-    # qgis
-    # wttrbar
-    # libvterm
-    # epy
-    # astroterm
-    # playerctl
-    prismlauncher
-    # zoom-us
-    # _4d-minesweeper
+    uutils-coreutils
+    spotify
+    qgis
+    librewolf
+    wttrbar
+    libvterm
+    epy
+    astroterm
+    playerctl
+    # prismlauncher
+    zoom-us
+    betterdiscordctl
+    _4d-minesweeper
+    legendary-gl
     google-chrome
     gcc_multi
-    gimp3
-    # tlp
+    mpc
+
+    fancontrol-gui
+    nwg-look
+    # GNOME apps added because I got rid of Gnome
+    glib
+    evince
+    nautilus
+    file-roller
+    gnome-text-editor
+
+    # gimp3
+    rose-pine-cursor
+    gimp3-with-plugins
+    # gimp3Plugins.resynthesizer
+    tlp
     # wineWowPackages.waylandFull
-    # winetricks
-    # protontricks
-    # protonup
+    wineWowPackages.stable
+    winetricks
+    protontricks
+    protonup-ng
     kitty
     lolcat
     # nyancat
     # r2modman
     gparted
     libreoffice
+    sherlock
+    lutris
+    heroic
     mangal
     # wayneko
     gotop
-    # btop
+    btop
     ripgrep
 
     # copilot-language-server
     nixd
     lua-language-server
-    
+
     networkmanager
-    # mpd
     killall
     lm_sensors
 
-    # hyprland
+    hyprland
     xorg.xhost
     font-awesome_5
-    # leaf
-    # python313Packages.pip
+    libsForQt5.qt5ct
+    qt6Packages.qt6ct
+    leaf
+    python313Packages.pip
 
-    # grimblast 
-    # obs-studio
-    # brightnessctl
-    # brillo
-    # cliphist
-    # wl-clipboard
-    # go
-    # dunst
-    # libnotify
+    grimblast 
+    obs-studio
+    brightnessctl
+    brillo
+    cliphist
+    wl-clipboard
+    go
+    dunst
+    libnotify
+    # swayidle
+    # swaylock
+    # hypridle
 
     imv
-    # kdePackages.gwenview
+    kdePackages.gwenview
+    # gnome extensions
+    # gnomeExtensions.dash-to-dock
+    # gnomeExtensions.system-monitor-2
+    # gnomeExtensions.arcmenu
+    # gnomeExtensions.blur-my-shell
+    # gnomeExtensions.just-perfection
+    # gnomeExtensions.rounded-window-corners
+    # gnomeExtensions.vitals
+    # gnomeExtensions.appindicator
+
+
+    # gnome-tweaks
+    # gnome-boxes
+    # gnome-software
+    # gnome-shell
+    # gnome-shell-extensions
+    # gnome-extension-manager
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -149,10 +194,52 @@
   #  /etc/profiles/per-user/jonah/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "codium";
+    EDITOR = "emacs";
     TERMINAL = "kitty";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     NIXPKGS_ALLOW_UNFREE=1;
+  };
+
+  # home.pointerCursor = {
+  #   name = "MarsCursor";
+  #   size = 64;
+  #   hyprcursor = {
+  #     enable =  true;
+  #   };
+  # };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      # LibreWolf as default browser
+      "text/html" = "librewolf.desktop";
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+      "x-scheme-handler/about" = "librewolf.desktop";
+      "x-scheme-handler/unknown" = "librewolf.desktop";
+      "x-scheme-handler/chrome" = "librewolf.desktop";
+
+      # Other defaults
+      "application/json"="emacs.desktop";
+      "application/pdf"="org.gnome.Evince.desktop";
+      "application/x-extension-htm"="librewolf.desktop";
+      "application/x-extension-html"="librewolf.desktop";
+      "application/x-extension-shtml"="librewolf.desktop";
+      "application/x-extension-xht"="librewolf.desktop";
+      "application/x-extension-xhtml"="librewolf.desktop";
+      "application/xhtml+xml"="librewolf.desktop";
+      "application/xml"="codium.desktop";
+      "application/zip"="org.gnome.FileRoller.desktop";
+      "audio/x-mod"="codium.desktop";
+      "image/gif"="org.kde.gwenview.desktop";
+      "image/jpeg"="org.kde.gwenview.desktop";
+      "image/png"="org.kde.gwenview.desktop";
+      "text/plain"="org.gnome.TextEditor.desktop";
+      "video/mp4"="vlc.desktop";
+      "video/webm"="vlc.desktop";
+      "x-scheme-handler/betterdiscord"="discord.desktop";
+      "x-scheme-handler/discord"="vesktop.desktop";
+    };
   };
 
   programs.kitty = {
@@ -160,7 +247,7 @@
     # theme = "Chalkboard";
   };
 
-  programs.vscodium = {
+  programs.vscode = {
     enable = true;
     package = pkgs.vscodium.fhs;
     # profiles.default.extensions = with pkgs.vscode-extensions; [
@@ -197,12 +284,29 @@
   };
 
   qt = {
-    enable = false;
-    # kvantum.enable = true;
+    enable = true;
     # platformTheme.name = "qtct";
     # style.name = "qt6ct";
   };
 
+  programs.ncmpcpp = {
+    enable = true;
+    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+    mpdMusicDir = "/home/jonah/Music";
+    settings = {
+      visualizer_data_source = "/tmp/mpd.fifo";
+      visualizer_output_name = "visualizer";
+      visualizer_in_stereo = "yes";
+      visualizer_type = "ellipse";
+      visualizer_look = "󱄅|";
+      visualizer_spectrum_smooth_look = "no";
+    };
+  };
+
+
+
+  services.mpd-mpris.enable = true;
+  programs.qutebrowser.enable = true;
   programs.vim.enable = true;
 
   programs.vesktop = {
@@ -251,16 +355,6 @@
       };
     };
   };
-
-  # Fix this all later
-
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   plugins = [
-  #     inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-  #     # ...
-  #   ];
-  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

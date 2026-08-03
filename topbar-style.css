@@ -1,0 +1,282 @@
+window.topbar#waybar, tooltip {
+    background-color: alpha(@base00, 1.0);
+    background-image: linear-gradient(transparent 50%, alpha(@base01, 1.0) 50%);
+    background-size: 5px 2px;
+}
+
+* {
+    font-family: "BigBlueTermPlus Nerd Font Propo";
+    font-size: 13pt;
+    border: none;
+    color: #babbbb
+}
+
+@define-color base00 #090b0d; @define-color base01 #13181b;
+@define-color base02 #504945; @define-color base03 #665c54;
+@define-color base04 #928374; @define-color base05 #ebdbb2;
+@define-color base06 #fbf1c7; @define-color base07 #f9f5d7;
+
+@define-color base08 #cc241d; @define-color base09 #d65d0e;
+@define-color base0A #d79921; @define-color base0B #98971a;
+@define-color base0C #689d6a; @define-color base0D #458588;
+@define-color base0E #b16286; @define-color base0F #9d0006;
+.volbar {
+  background-color: #12181b;
+}
+.mpdbar {
+  background-color: #12181b;
+}
+
+#pulseaudio-slider {
+padding: 0;
+margin-left: 0;
+}
+#pulseaudio-slider slider {
+min-height: 0px;
+/* max-width: 0px; */
+/* max-height: 0px; */
+min-width: 0px;
+opacity: 0.7;
+background: alpha(gray,0.0);
+background-image: none;
+border: none;
+box-shadow: none;
+}
+#pulseaudio-slider trough {
+min-height: 23px;
+min-width: 1700px;
+border-radius: 0px;
+background: black;
+}
+#pulseaudio-slider highlight {
+min-height: 23px;
+border-radius: 0px;
+background: #1a6426;
+}
+#pulseaudio {
+  margin-left: -3220px;
+}
+#custom-mpd-progress {
+  margin-top: 23px;
+  margin-left: 0px;
+  min-width: 1700px;
+  min-height: 23px;
+  background-color: #172a2a;
+  border-radius: 0px;
+  color:transparent
+}
+
+#mpd {
+  margin-top: 23px;
+  min-height: 23px;
+  min-width: 100px;
+  margin-left: -3150px;
+}
+
+
+#hyprland-window, #clock {
+  color: #bbbbbb;
+}
+#custom-weather {
+  color: #6f92a5;
+}
+#custom-weight {
+  color: #a7beb9;
+}
+#custom-water {
+  color: #009403;
+}
+#custom-water2 {
+  color: #0381d9;
+}
+#custom-spacer0, #custom-spacer, #custom-spacer2 {
+  color: #354a45;
+}
+#backlight, #battery {
+  color: #818c84;
+}
+#memory, #cpu, #temperature {
+  color: #347698;
+}
+#custom-joppa {
+  color: #516978;
+}
+tooltip {
+    border-color: @base0D;
+}
+tooltip label {
+    color: @base05;
+}
+#wireplumber,
+#pulseaudio,
+#sndio {
+  padding: 0 5px;
+}
+#wireplumber.muted,
+#pulseaudio.muted,
+#sndio.muted {
+  padding: 0 5px;
+}
+#upower,
+#battery {
+  padding: 0 5px;
+}
+#upower.charging,
+#battery.Charging {
+  padding: 0 5px;
+}
+#network {
+  padding: 0 5px;
+}
+#network.disconnected {
+  padding: 0 5px;
+}
+#user {
+  padding: 0 5px;
+}
+#clock {
+  padding: 0 5px;
+}
+#backlight {
+  padding: 0 5px;
+}
+#cpu {
+  padding: 0 5px;
+}
+#disk {
+  padding: 0 5px;
+}
+#idle_inhibitor {
+  padding: 0 5px;
+}
+#temperature {
+  padding: 0 5px;
+}
+#mpd {
+  padding: 0 5px;
+}
+#language {
+  padding: 0 5px;
+}
+#keyboard-state {
+  padding: 0 5px;
+}
+#memory {
+  padding: 0 5px;
+}
+#window {
+  padding: 0 5px;
+}
+#bluetooth {
+  padding: 0 5px;
+}
+#bluetooth.disabled {
+  padding: 0 5px;
+}
+
+
+tooltip {
+     background: alpha(@base00, 0.95);
+}
+
+#custom-mpd-progress.p0 { background: linear-gradient(to right, #365a61 0%, #172a2a 0%); }
+#custom-mpd-progress.p1 { background: linear-gradient(to right, #365a61 1%, #172a2a 1%); }
+#custom-mpd-progress.p2 { background: linear-gradient(to right, #365a61 2%, #172a2a 2%); }
+#custom-mpd-progress.p3 { background: linear-gradient(to right, #365a61 3%, #172a2a 3%); }
+#custom-mpd-progress.p4 { background: linear-gradient(to right, #365a61 4%, #172a2a 4%); }
+#custom-mpd-progress.p5 { background: linear-gradient(to right, #365a61 5%, #172a2a 5%); }
+#custom-mpd-progress.p6 { background: linear-gradient(to right, #365a61 6%, #172a2a 6%); }
+#custom-mpd-progress.p7 { background: linear-gradient(to right, #365a61 7%, #172a2a 7%); }
+#custom-mpd-progress.p8 { background: linear-gradient(to right, #365a61 8%, #172a2a 8%); }
+#custom-mpd-progress.p9 { background: linear-gradient(to right, #365a61 9%, #172a2a 9%); }
+#custom-mpd-progress.p10 { background: linear-gradient(to right, #365a61 10%, #172a2a 10%); }
+#custom-mpd-progress.p11 { background: linear-gradient(to right, #365a61 11%, #172a2a 11%); }
+#custom-mpd-progress.p12 { background: linear-gradient(to right, #365a61 12%, #172a2a 12%); }
+#custom-mpd-progress.p13 { background: linear-gradient(to right, #365a61 13%, #172a2a 13%); }
+#custom-mpd-progress.p14 { background: linear-gradient(to right, #365a61 14%, #172a2a 14%); }
+#custom-mpd-progress.p15 { background: linear-gradient(to right, #365a61 15%, #172a2a 15%); }
+#custom-mpd-progress.p16 { background: linear-gradient(to right, #365a61 16%, #172a2a 16%); }
+#custom-mpd-progress.p17 { background: linear-gradient(to right, #365a61 17%, #172a2a 17%); }
+#custom-mpd-progress.p18 { background: linear-gradient(to right, #365a61 18%, #172a2a 18%); }
+#custom-mpd-progress.p19 { background: linear-gradient(to right, #365a61 19%, #172a2a 19%); }
+#custom-mpd-progress.p20 { background: linear-gradient(to right, #365a61 20%, #172a2a 20%); }
+#custom-mpd-progress.p21 { background: linear-gradient(to right, #365a61 21%, #172a2a 21%); }
+#custom-mpd-progress.p22 { background: linear-gradient(to right, #365a61 22%, #172a2a 22%); }
+#custom-mpd-progress.p23 { background: linear-gradient(to right, #365a61 23%, #172a2a 23%); }
+#custom-mpd-progress.p24 { background: linear-gradient(to right, #365a61 24%, #172a2a 24%); }
+#custom-mpd-progress.p25 { background: linear-gradient(to right, #365a61 25%, #172a2a 25%); }
+#custom-mpd-progress.p26 { background: linear-gradient(to right, #365a61 26%, #172a2a 26%); }
+#custom-mpd-progress.p27 { background: linear-gradient(to right, #365a61 27%, #172a2a 27%); }
+#custom-mpd-progress.p28 { background: linear-gradient(to right, #365a61 28%, #172a2a 28%); }
+#custom-mpd-progress.p29 { background: linear-gradient(to right, #365a61 29%, #172a2a 29%); }
+#custom-mpd-progress.p30 { background: linear-gradient(to right, #365a61 30%, #172a2a 30%); }
+#custom-mpd-progress.p31 { background: linear-gradient(to right, #365a61 31%, #172a2a 31%); }
+#custom-mpd-progress.p32 { background: linear-gradient(to right, #365a61 32%, #172a2a 32%); }
+#custom-mpd-progress.p33 { background: linear-gradient(to right, #365a61 33%, #172a2a 33%); }
+#custom-mpd-progress.p34 { background: linear-gradient(to right, #365a61 34%, #172a2a 34%); }
+#custom-mpd-progress.p35 { background: linear-gradient(to right, #365a61 35%, #172a2a 35%); }
+#custom-mpd-progress.p36 { background: linear-gradient(to right, #365a61 36%, #172a2a 36%); }
+#custom-mpd-progress.p37 { background: linear-gradient(to right, #365a61 37%, #172a2a 37%); }
+#custom-mpd-progress.p38 { background: linear-gradient(to right, #365a61 38%, #172a2a 38%); }
+#custom-mpd-progress.p39 { background: linear-gradient(to right, #365a61 39%, #172a2a 39%); }
+#custom-mpd-progress.p40 { background: linear-gradient(to right, #365a61 40%, #172a2a 40%); }
+#custom-mpd-progress.p41 { background: linear-gradient(to right, #365a61 41%, #172a2a 41%); }
+#custom-mpd-progress.p42 { background: linear-gradient(to right, #365a61 42%, #172a2a 42%); }
+#custom-mpd-progress.p43 { background: linear-gradient(to right, #365a61 43%, #172a2a 43%); }
+#custom-mpd-progress.p44 { background: linear-gradient(to right, #365a61 44%, #172a2a 44%); }
+#custom-mpd-progress.p45 { background: linear-gradient(to right, #365a61 45%, #172a2a 45%); }
+#custom-mpd-progress.p46 { background: linear-gradient(to right, #365a61 46%, #172a2a 46%); }
+#custom-mpd-progress.p47 { background: linear-gradient(to right, #365a61 47%, #172a2a 47%); }
+#custom-mpd-progress.p48 { background: linear-gradient(to right, #365a61 48%, #172a2a 48%); }
+#custom-mpd-progress.p49 { background: linear-gradient(to right, #365a61 49%, #172a2a 49%); }
+#custom-mpd-progress.p50 { background: linear-gradient(to right, #365a61 50%, #172a2a 50%); }
+#custom-mpd-progress.p51 { background: linear-gradient(to right, #365a61 51%, #172a2a 51%); }
+#custom-mpd-progress.p52 { background: linear-gradient(to right, #365a61 52%, #172a2a 52%); }
+#custom-mpd-progress.p53 { background: linear-gradient(to right, #365a61 53%, #172a2a 53%); }
+#custom-mpd-progress.p54 { background: linear-gradient(to right, #365a61 54%, #172a2a 54%); }
+#custom-mpd-progress.p55 { background: linear-gradient(to right, #365a61 55%, #172a2a 55%); }
+#custom-mpd-progress.p56 { background: linear-gradient(to right, #365a61 56%, #172a2a 56%); }
+#custom-mpd-progress.p57 { background: linear-gradient(to right, #365a61 57%, #172a2a 57%); }
+#custom-mpd-progress.p58 { background: linear-gradient(to right, #365a61 58%, #172a2a 58%); }
+#custom-mpd-progress.p59 { background: linear-gradient(to right, #365a61 59%, #172a2a 59%); }
+#custom-mpd-progress.p60 { background: linear-gradient(to right, #365a61 60%, #172a2a 60%); }
+#custom-mpd-progress.p61 { background: linear-gradient(to right, #365a61 61%, #172a2a 61%); }
+#custom-mpd-progress.p62 { background: linear-gradient(to right, #365a61 62%, #172a2a 62%); }
+#custom-mpd-progress.p63 { background: linear-gradient(to right, #365a61 63%, #172a2a 63%); }
+#custom-mpd-progress.p64 { background: linear-gradient(to right, #365a61 64%, #172a2a 64%); }
+#custom-mpd-progress.p65 { background: linear-gradient(to right, #365a61 65%, #172a2a 65%); }
+#custom-mpd-progress.p66 { background: linear-gradient(to right, #365a61 66%, #172a2a 66%); }
+#custom-mpd-progress.p67 { background: linear-gradient(to right, #365a61 67%, #172a2a 67%); }
+#custom-mpd-progress.p68 { background: linear-gradient(to right, #365a61 68%, #172a2a 68%); }
+#custom-mpd-progress.p69 { background: linear-gradient(to right, #365a61 69%, #172a2a 69%); }
+#custom-mpd-progress.p70 { background: linear-gradient(to right, #365a61 70%, #172a2a 70%); }
+#custom-mpd-progress.p71 { background: linear-gradient(to right, #365a61 71%, #172a2a 71%); }
+#custom-mpd-progress.p72 { background: linear-gradient(to right, #365a61 72%, #172a2a 72%); }
+#custom-mpd-progress.p73 { background: linear-gradient(to right, #365a61 73%, #172a2a 73%); }
+#custom-mpd-progress.p74 { background: linear-gradient(to right, #365a61 74%, #172a2a 74%); }
+#custom-mpd-progress.p75 { background: linear-gradient(to right, #365a61 75%, #172a2a 75%); }
+#custom-mpd-progress.p76 { background: linear-gradient(to right, #365a61 76%, #172a2a 76%); }
+#custom-mpd-progress.p77 { background: linear-gradient(to right, #365a61 77%, #172a2a 77%); }
+#custom-mpd-progress.p78 { background: linear-gradient(to right, #365a61 78%, #172a2a 78%); }
+#custom-mpd-progress.p79 { background: linear-gradient(to right, #365a61 79%, #172a2a 79%); }
+#custom-mpd-progress.p80 { background: linear-gradient(to right, #365a61 80%, #172a2a 80%); }
+#custom-mpd-progress.p81 { background: linear-gradient(to right, #365a61 81%, #172a2a 81%); }
+#custom-mpd-progress.p82 { background: linear-gradient(to right, #365a61 82%, #172a2a 82%); }
+#custom-mpd-progress.p83 { background: linear-gradient(to right, #365a61 83%, #172a2a 83%); }
+#custom-mpd-progress.p84 { background: linear-gradient(to right, #365a61 84%, #172a2a 84%); }
+#custom-mpd-progress.p85 { background: linear-gradient(to right, #365a61 85%, #172a2a 85%); }
+#custom-mpd-progress.p86 { background: linear-gradient(to right, #365a61 86%, #172a2a 86%); }
+#custom-mpd-progress.p87 { background: linear-gradient(to right, #365a61 87%, #172a2a 87%); }
+#custom-mpd-progress.p88 { background: linear-gradient(to right, #365a61 88%, #172a2a 88%); }
+#custom-mpd-progress.p89 { background: linear-gradient(to right, #365a61 89%, #172a2a 89%); }
+#custom-mpd-progress.p90 { background: linear-gradient(to right, #365a61 90%, #172a2a 90%); }
+#custom-mpd-progress.p91 { background: linear-gradient(to right, #365a61 91%, #172a2a 91%); }
+#custom-mpd-progress.p92 { background: linear-gradient(to right, #365a61 92%, #172a2a 92%); }
+#custom-mpd-progress.p93 { background: linear-gradient(to right, #365a61 93%, #172a2a 93%); }
+#custom-mpd-progress.p94 { background: linear-gradient(to right, #365a61 94%, #172a2a 94%); }
+#custom-mpd-progress.p95 { background: linear-gradient(to right, #365a61 95%, #172a2a 95%); }
+#custom-mpd-progress.p96 { background: linear-gradient(to right, #365a61 96%, #172a2a 96%); }
+#custom-mpd-progress.p97 { background: linear-gradient(to right, #365a61 97%, #172a2a 97%); }
+#custom-mpd-progress.p98 { background: linear-gradient(to right, #365a61 98%, #172a2a 98%); }
+#custom-mpd-progress.p99 { background: linear-gradient(to right, #365a61 99%, #172a2a 99%); }
+#custom-mpd-progress.p100 { background: linear-gradient(to right, #365a61 100%, #172a2a 100%); }

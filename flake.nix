@@ -30,11 +30,11 @@
     # stylix.url = "github:danth/stylix/release-24.11";
     stylix.url = "github:danth/stylix";
 
-    # rose-pine-hyprcursor = {
-    #   url = "github:ndom91/rose-pine-hyprcursor";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.hyprlang.follows = "hyprland/hyprlang";
-    # };
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
   };
   
 
@@ -78,7 +78,7 @@
         };
       };
       homeConfigurations = {
-        filk = home-manager.lib.homeManagerConfiguration {
+        jonah = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { 
             inherit inputs;
