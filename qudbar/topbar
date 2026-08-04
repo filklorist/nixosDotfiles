@@ -1,0 +1,169 @@
+[
+    {
+        "name": "topbar",
+        "height": 52,
+        "width": 2256,
+        "layer": "top",
+        "fixed-center": false,
+        "modules-center": [
+            "custom/spacer",
+            "backlight",
+            "custom/spacer2",
+            "battery",
+            "custom/spacer2",
+            "memory",
+            "custom/spacer2",
+            "cpu",
+            "custom/spacer2",
+            "temperature",
+            "custom/spacer"
+        ],
+        "modules-left": [
+            "hyprland/window",
+            "custom/spacer0",
+            "custom/weather",
+            "custom/spacer2",
+            "custom/water",
+            "custom/spacer2",
+            "custom/weight",
+            "custom/water2"
+        ],
+        "modules-right": [
+            "clock",
+            "custom/spacer2",
+            "custom/joppa"
+        ],
+        "output": [
+            "eDP-1",
+            "HDMI-A-1"
+        ],
+        "position": "top",
+        "temperature": {
+            "format": "TMP: {temperatureC}",
+            "thermal-zone": 2
+        },
+        "backlight": {
+            "format": "BRI: {percent}",
+        },
+        "battery": {
+            "format": "BAT: {capacity}",
+        },
+        "clock": {
+            "format": "{0:%R}, {0:%d} of {0:%B}",
+        },
+        "custom/joppa": {
+            "format": "Bey Lah "
+        },
+        "custom/water":{
+            "format": "time to drink water"
+        },
+        "custom/weight":{
+            "format": "48/210# "
+        },
+        "custom/water2": {
+            "format": "32$"
+        },
+        "custom/spacer0": {
+            "format": " ╟────────╢ "
+        },
+        "custom/spacer": {
+            "format": " ╟──────────╢ ",
+        },
+        "custom/spacer2": {
+            "format": " :: ",
+        },
+        "cpu": {
+            "format": "CPU: {}"
+        },
+        "memory": {
+            "format": "MEM: {}"
+        },
+        "custom/weather": {
+            "exec": "wttrbar --nerd --location blue+lake --custom-indicator {FeelsLikeC}",
+            "format": "T:{}",
+            "interval": 3600,
+            "return-type": "json",
+            "tooltip": true
+        },
+        "hyprland/window": {
+            "format": "  {class} ",
+            "max-length": 20,
+        }
+    },
+    {
+        "name": "volbar",
+        "height": 54,
+        "width": 1702,
+        "layer": "top",
+        "fixed-center": false,
+        "modules-left": [
+            "group/subbars"
+        ],
+        "group/subbars": {
+            "orientation": "vertical",
+            "modules": [
+                "custom/mpd-progress",
+                "mpd"
+            ]
+        },
+        "modules-right": [
+            "tray"
+        ],
+        "output": [
+            "eDP-1",
+            "HDMI-A-1"
+        ],
+        "position": "top",
+        "pulseaudio": {
+            "format": "VOL: {volume} / 100"
+        },
+        "pulseaudio/slider": {
+            "min": 0,
+            "max": 100,
+            "orioentation": "horizontal"
+        },
+        "mpd": {
+            "format": "MUS: {elapsedTime:%M:%S} / {totalTime:%M:%S}"
+        },
+        "custom/mpd-progress": {
+            "exec": "~/.config/waybar/scripts/mpd-progress.sh",
+            "interval": 1,
+            "return-type": "json",
+            "format": " "
+        },
+    },
+    {
+        "name": "taskbar",
+        "height": 73,
+        "width": 2256,
+        "layer": "top",
+        "position": "bottom",
+        "fixed-center": false,
+        "modules-left": [
+            "group/abilities",
+            "hyprland/workspaces",
+        ],
+        "hyprland/workspaces": {
+            "format": "{windows} <span foreground=\"white\">&lt;</span><span foreground=\"#756e52\">{icon}</span><span foreground=\"white\">&gt;</span>",
+            "format-window-separator": " & ",
+            "workspace-taskbar": {
+                "enable": true,
+                "update-active-window": true,
+                "format": "{icon} {title:.13}",
+                "icon-size": 32,
+                "on-click-window": "~/.config/waybar/scripts/focus-window.sh {address} {button}"
+            }
+        },
+        "group/abilities": {
+            "orientation": "vertical",
+            "modules": [
+                "custom/line1",
+                "custom/line1",
+                "custom/line1"
+            ]
+        },
+        "custom/line1": {
+            "format": "placeholder"
+        }
+    }
+]
