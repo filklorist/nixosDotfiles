@@ -13,7 +13,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "26.05"; # Please read the comment before changing.
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -23,10 +23,11 @@
   imports =
     [
       ./bash.nix
-      # ./hyprland.nix
-      # ./waybar.nix
+      ./hyprland2.nix
+      ./waybar.nix
       ./stylix-h.nix
       ./ranger.nix
+      ./zsh.nix
     ];
 
   # Minimize/Maximize Windows
@@ -36,8 +37,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-
-
     #the good stuff
     vscodium-fhs
     jdk
@@ -46,36 +45,37 @@
 
     kdePackages.bluedevil
     # clamav
-    # vesktop
+
+    uutils-coreutils    
     # qgis
-    # wttrbar
+    wttrbar
     # libvterm
-    # epy
-    # astroterm
-    # playerctl
+    epy
+    astroterm
+    playerctl
     prismlauncher
     # zoom-us
-    # _4d-minesweeper
+    _4d-minesweeper
     google-chrome
     gcc_multi
-    gimp3
-    # tlp
+    gimp3-with-plugins
+    tlp
     # wineWowPackages.waylandFull
-    # winetricks
-    # protontricks
-    # protonup
+    winetricks
+    protontricks
+    protonup-ng
     kitty
     lolcat
-    # nyancat
+    nyancat
     # r2modman
     gparted
     libreoffice
     mangal
-    # wayneko
+    wayneko
     gotop
-    # btop
+    btop
     ripgrep
-
+    tree
     # copilot-language-server
     nixd
     lua-language-server
@@ -85,79 +85,72 @@
     killall
     lm_sensors
 
-    # hyprland
-    xorg.xhost
+    xhost
     font-awesome_5
-    # leaf
-    # python313Packages.pip
 
-    # grimblast 
-    # obs-studio
-    # brightnessctl
-    # brillo
-    # cliphist
-    # wl-clipboard
-    # go
-    # dunst
-    # libnotify
+    grimblast 
+    obs-studio
+    brightnessctl
+    brillo
+    cliphist
+    wl-clipboard
+    go
+    dunst
+    libnotify
+    
+    kdePackages.gwenview
 
-    imv
-    # kdePackages.gwenview
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+   (callPackage ./endcord/derivation.nix {})
+   (callPackage ./fracterm/derivation.nix {})
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/jonah/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
-    EDITOR = "codium";
+    EDITOR = "emacs";
     TERMINAL = "kitty";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     NIXPKGS_ALLOW_UNFREE=1;
   };
+
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     # LibreWolf as default browser
+  #     "text/html" = "librewolf.desktop";
+  #     "x-scheme-handler/http" = "librewolf.desktop";
+  #     "x-scheme-handler/https" = "librewolf.desktop";
+  #     "x-scheme-handler/about" = "librewolf.desktop";
+  #     "x-scheme-handler/unknown" = "librewolf.desktop";
+  #     "x-scheme-handler/chrome" = "librewolf.desktop";
+
+  #     # Other defaults
+  #     "application/json"="emacs.desktop";
+  #     "application/pdf"="org.gnome.Evince.desktop";
+  #     "application/x-extension-htm"="librewolf.desktop";
+  #     "application/x-extension-html"="librewolf.desktop";
+  #     "application/x-extension-shtml"="librewolf.desktop";
+  #     "application/x-extension-xht"="librewolf.desktop";
+  #     "application/x-extension-xhtml"="librewolf.desktop";
+  #     "application/xhtml+xml"="librewolf.desktop";
+  #     "application/xml"="codium.desktop";
+  #     "application/zip"="org.gnome.FileRoller.desktop";
+  #     "audio/x-mod"="codium.desktop";
+  #     "image/gif"="org.kde.gwenview.desktop";
+  #     "image/jpeg"="org.kde.gwenview.desktop";
+  #     "image/png"="org.kde.gwenview.desktop";
+  #     "text/plain"="org.gnome.TextEditor.desktop";
+  #     "video/mp4"="vlc.desktop";
+  #     "video/webm"="vlc.desktop";
+  #     "x-scheme-handler/betterdiscord"="discord.desktop";
+  #     "x-scheme-handler/discord"="vesktop.desktop";
+  #   };
+  # };
 
   programs.kitty = {
     enable = true;
     # theme = "Chalkboard";
+    settings = {
+      shell = "zsh";
+    };
   };
 
   programs.vscodium = {
@@ -195,6 +188,23 @@
       pkgs.kdePackages.xdg-desktop-portal-kde
     ];
   };
+
+  programs.ncmpcpp = {
+    enable = true;
+    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+    mpdMusicDir = "/home/filk/Music";
+    settings = {
+      visualizer_data_source = "/tmp/mpd.fifo";
+      visualizer_output_name = "visualizer";
+      visualizer_in_stereo = "yes";
+      visualizer_type = "ellipse";
+      visualizer_look = "󱄅|";
+      visualizer_spectrum_smooth_look = "no";
+    };
+  };
+
+  services.mpd-mpris.enable = true;
+  programs.qutebrowser.enable = true;
 
   qt = {
     enable = false;
