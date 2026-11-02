@@ -1,11 +1,9 @@
 {
   description="First Flake";
 
-
-
   inputs = {
     # Core dependencies
-    # Uncomment unstable to break everything probably
+    # switch back to old version to probably break everything
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url = "github:nix-community/home-manager/";
@@ -26,15 +24,15 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Swap which stylix url is commented if stable -> unstable
+    # Swap which stylix url is commented if unstable -> stable
     # stylix.url = "github:danth/stylix/release-24.11";
     stylix.url = "github:danth/stylix";
 
-    # rose-pine-hyprcursor = {
-    #   url = "github:ndom91/rose-pine-hyprcursor";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.hyprlang.follows = "hyprland/hyprlang";
-    # };
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
   };
   
 
@@ -58,11 +56,17 @@
       pkgs = import nixpkgs-patched {
         system = systemSettings.system;
         overlays = [
+          # I fixed the reason for the overlay so could stop using the patched version
+          # But I like keeping it around just in case I'll need it again
           # inputs.emacs-overlay
+          (final: prev: {
+            bookokrat = final.callPackage ./bookokrat/derivation.nix {};
+          })
         ];
       };
 
     in {
+      packages.${systemSettings.system}.bookokrat = pkgs.bookokrat;
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           specialArgs = { 
@@ -73,7 +77,7 @@
           modules = [ 
             ./configuration.nix 
             stylix.nixosModules.stylix
-            nixos-hardware.nixosModules.framework-13th-gen-intel
+            # nixos-hardware.nixosModules.framework-13th-gen-intel
           ];
         };
       };

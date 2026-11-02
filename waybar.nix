@@ -34,7 +34,8 @@
                         "class<codium>" = "";
                         "class<gimp>" = "";
                         "title<ranger>" = "";
-                        "class<org.prismlauncher.PrismLauncher>" = "";
+                        "class<org.prismlauncher.PrismLauncher.Desktop>" = "";
+                        "class<StaTech Industry>" = "";
                         "class<librewolf>" = "";
                         "class<steam>" = "";
                         "class<steam_app_548430>" = "󰢷";
@@ -71,6 +72,19 @@
                     tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                     format-alt = "{:%b %d, %Y}";
                 };
+                "mpd" = {
+                  format = "{stateIcon} {randomIcon} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
+                  format-stopped = "STOPPED ";
+                  tooltip-format = "{artist} - {album} - {title}";
+                  state-icons = {
+                    paused = "";
+                    playing = "";
+                  };
+                  random-icons = {
+                    off = "<span color=\"#f53c3c\"></span>";
+                    on = "";
+                  };
+                };
                 "pulseaudio" = {
                     format = "{volume}% 󰋋";
                 };
@@ -103,7 +117,8 @@
                   font-size: 22px;
               }
 
-              .modules-right #weather { background-color: alpha(@base00,0.7) }
+              .modules-right #weather { background-color: alpha(@base01,0.7) }
+              .modules-right #mpd { background-color: alpha(@base00,0.7)}
               .modules-right #pulseaudio { background-color: alpha(@base01,0.7)}
               .modules-right #cpu { background-color: alpha(@base00,0.7)}
               .modules-right #memory { background-color: alpha(@base01,0.7)}

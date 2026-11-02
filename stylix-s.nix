@@ -7,7 +7,7 @@
         autoEnable = true;
         # image = ./current_wallpaper.jpg;
         # image = ./current_wallpaper.png;
-        image = ./a.jpg;
+        image = ./wallpapers/ryo.jpg;
         # targets.hyprland.enable = true;
     };
 }

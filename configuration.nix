@@ -176,7 +176,6 @@
     steam-run
     rofi 
     wofi 
-    audacity 
     waybar
     # hyprpaper
     actkbd
@@ -205,8 +204,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 7777 15777 15000 ];
-  networking.firewall.allowedUDPPorts = [ 7777 15777 15000 ];
+  networking.firewall.allowedTCPPorts = [ 7777 15777 15000 24454 ];
+  networking.firewall.allowedUDPPorts = [ 7777 15777 15000 24454 ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
@@ -244,8 +243,29 @@
   hardware.graphics ={
     enable = true;
     # driSupport = true;
+    extraPackages =  with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+    ];
     enable32Bit = true;
     # extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+  };
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      glfw
+      libGL
+      openal
+      flite
+      libpulseaudio
+      udev
+      libX11
+      libXcursor
+      libXrandr
+      libXinerama
+      libXi
+      libglvnd
+    ];
   };
 
   fonts = {

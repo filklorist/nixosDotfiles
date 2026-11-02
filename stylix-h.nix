@@ -3,12 +3,10 @@
 {
     stylix = {
         # homeManagerIntegration.followSystem = true;
-        # image = ./current_wallpaper.jpg;
         enable = true;
-        # image = ./current_wallpaper.png;
-        image = ./simple_gruv.png;
-        # image = ./recent_walk.jpg;
-        # image = ./Space_Trucker.png;
+        image = ./wallpapers/ryo.png;
+        # image = ./wallpapers/simple_gruv.png;
+        # image = ./wallpapers/Space_Trucker.png;
         targets = {
             # hyprland.enable = true;
             # waybar.enable = true;
@@ -21,23 +19,22 @@
         base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
 
         override = {
-        #     base00 = "203d21";
-            # base01 = "2d1d0b";
-        #     base01 = "ff0018";
-        #     base02 = "762200";
-        #     base03 = "ff00e2";
-        #     base04 = "244e04";
-        #     base05 = "00ff29";
-        #     base06 = "393d02";
-        #     base07 = "f0ff1e";
-        #     base08 = "636820";
-        #     base09 = "08fe03";
-        #     base0A = "38495b";
-        #     base0B = "eeaa79";
-        #     base0C = "ff5c02";
-        #     base0D = "00ebff";
-        #     # base0E = "";
-        #     # base0F = "";
+            base00 = "27171b";
+            # base01 = "544b45";
+            # base02 = "78726f";
+            # base03 = "9d9999";
+            # base04 = "c1c0c3";
+            # base05 = "e6e7ed";
+            # base06 = "eaeaef";
+            # base07 = "edeef2";
+            # base08 = "997c43";
+            # base09 = "4d6fea";
+            # base0A = "388bda";
+            # base0B = "4a94dc";
+            # base0C = "4d78bf";
+            # base0D = "bd5d29";
+            # base0E = "90b8ef";
+            # base0F = "a26c40";
         };
         # cursor = {
         #     package = inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default;
