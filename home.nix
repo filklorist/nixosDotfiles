@@ -1,5 +1,4 @@
 { inputs, config, pkgs, ... }:
-
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -36,8 +35,8 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+
   home.packages = with pkgs; [
-    #the good stuff
     vscodium-fhs
     jdk
     cmake
@@ -47,7 +46,7 @@
     # clamav
 
     uutils-coreutils    
-    # qgis
+    qgis
     wttrbar
     # libvterm
     epy
@@ -76,12 +75,10 @@
     btop
     ripgrep
     tree
-    # copilot-language-server
     nixd
     lua-language-server
     
     networkmanager
-    # mpd
     killall
     lm_sensors
 
@@ -97,12 +94,17 @@
     go
     dunst
     libnotify
+    ffmpeg
+    bookokrat
     
+    lutris
     kdePackages.gwenview
 
-   (callPackage ./endcord/derivation.nix {})
-   (callPackage ./fracterm/derivation.nix {})
+    (callPackage ./endcord/derivation.nix {})
+    (callPackage ./oxce/derivation.nix {})
+    # (callPackage ./fracterm/derivation.nix {})
   ];
+
 
   home.sessionVariables = {
     EDITOR = "emacs";
